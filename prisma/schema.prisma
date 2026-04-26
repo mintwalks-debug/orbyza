@@ -1,0 +1,144 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Lead {
+  id         String   @id @default(cuid())
+  email      String
+  name       String
+  phone      String?
+  company    String?
+  service    String?
+  message    String?
+  leadSource String?
+  status     String   @default("new")
+  ipAddress  String?
+  userAgent  String?
+  read       Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Subscriber {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  name             String?
+  subscribed       Boolean  @default(true)
+  unsubscribeToken String   @unique @default(cuid())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Testimonial {
+  id            String   @id @default(cuid())
+  clientName    String
+  clientCompany String
+  clientTitle   String?
+  clientImage   String?
+  content       String
+  rating        Int
+  service       String?
+  featured      Boolean  @default(false)
+  approved      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([featured])
+  @@index([approved])
+}
+
+model CaseStudy {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique
+  description     String
+  thumbnail       String
+  images          String[]
+  clientName      String
+  clientIndustry  String
+  challenge       String
+  solution        String
+  results         String[]
+  services        String[]
+  testimonial     String?
+  featured        Boolean  @default(false)
+  published       Boolean  @default(true)
+  views           Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([featured])
+  @@index([published])
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  content     String
+  excerpt     String
+  author      String
+  thumbnail   String?
+  categories  String[]
+  tags        String[]
+  published   Boolean   @default(false)
+  featured    Boolean   @default(false)
+  views       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  publishedAt DateTime?
+
+  @@index([published])
+  @@index([featured])
+  @@index([createdAt])
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  ipAddress String?
+  userAgent String?
+  read      Boolean  @default(false)
+  replied   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([read])
+  @@index([createdAt])
+}
+
+model SecurityLog {
+  id          String   @id @default(cuid())
+  ipAddress   String
+  userAgent   String?
+  eventType   String
+  description String
+  severity    String   @default("low")
+  blocked     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([ipAddress])
+  @@index([severity])
+}
+
+model BlockedIP {
+  id        String   @id @default(cuid())
+  ipAddress String   @unique
+  reason    String
+  blocked   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([blocked])
+}
