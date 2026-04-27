@@ -26,9 +26,11 @@ const ServiceDetail = ({
   iconName, 
   features,
   image,
+  painPoints,
   longDescription,
   methodology,
   roiDetails,
+  pricing,
   faqs
 }: ServiceDetailProps) => {
   // @ts-ignore
