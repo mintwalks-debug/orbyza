@@ -21,6 +21,30 @@ import { useEffect, useRef, useState } from 'react';
 
 const ROTATING_WORDS = ['SEO', 'SEM', 'Social Media', 'Web Design', 'Content'];
 
+// Fixed particle data — avoids Math.random() SSR/client hydration mismatch
+const PARTICLES = [
+  { w: 3.2, h: 4.8, l: 12.5, t: 18.3, dur: 7.2, delay: 1.4 },
+  { w: 2.8, h: 3.6, l: 28.7, t: 72.1, dur: 9.5, delay: 3.2 },
+  { w: 4.1, h: 2.9, l: 45.3, t: 34.6, dur: 8.1, delay: 0.7 },
+  { w: 3.7, h: 4.2, l: 61.8, t: 55.9, dur: 11.3, delay: 5.1 },
+  { w: 2.4, h: 5.0, l: 78.2, t: 12.4, dur: 6.8, delay: 2.3 },
+  { w: 5.5, h: 3.1, l: 5.9,  t: 88.7, dur: 13.0, delay: 4.8 },
+  { w: 3.0, h: 4.5, l: 92.4, t: 41.2, dur: 7.6, delay: 1.9 },
+  { w: 4.8, h: 2.6, l: 33.1, t: 67.5, dur: 10.4, delay: 3.7 },
+  { w: 2.2, h: 3.8, l: 54.7, t: 23.8, dur: 8.9, delay: 0.3 },
+  { w: 4.3, h: 5.2, l: 71.6, t: 80.1, dur: 12.1, delay: 5.6 },
+  { w: 3.5, h: 2.3, l: 18.9, t: 47.4, dur: 9.7, delay: 2.8 },
+  { w: 5.1, h: 4.0, l: 85.3, t: 6.2,  dur: 7.3, delay: 1.1 },
+  { w: 2.7, h: 3.3, l: 40.8, t: 93.5, dur: 11.8, delay: 4.4 },
+  { w: 4.6, h: 2.1, l: 67.2, t: 29.7, dur: 6.5, delay: 3.0 },
+  { w: 3.9, h: 4.7, l: 9.4,  t: 61.8, dur: 10.2, delay: 0.5 },
+  { w: 2.5, h: 3.4, l: 52.6, t: 14.3, dur: 8.4, delay: 5.9 },
+  { w: 5.8, h: 2.8, l: 77.1, t: 76.9, dur: 13.5, delay: 2.1 },
+  { w: 3.3, h: 5.1, l: 23.5, t: 38.2, dur: 7.9, delay: 4.2 },
+  { w: 4.4, h: 3.7, l: 96.8, t: 52.5, dur: 9.1, delay: 1.6 },
+  { w: 2.9, h: 4.4, l: 38.4, t: 85.0, dur: 11.6, delay: 3.5 },
+];
+
 const STATS = [
   { value: '420%', label: 'Avg. ROI Delivered' },
   { value: '150+', label: 'Brands Scaled' },
@@ -104,17 +128,17 @@ const HeroSection = () => {
 
       {/* ── Floating particles ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {PARTICLES.map((p, i) => (
           <div
             key={i}
             className="absolute rounded-full bg-brand-primary/30"
             style={{
-              width: `${Math.random() * 4 + 2}px`,
-              height: `${Math.random() * 4 + 2}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `floatUp ${6 + Math.random() * 8}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 6}s`,
+              width: `${p.w}px`,
+              height: `${p.h}px`,
+              left: `${p.l}%`,
+              top: `${p.t}%`,
+              animation: `floatUp ${p.dur}s ease-in-out infinite`,
+              animationDelay: `${p.delay}s`,
             }}
           />
         ))}
