@@ -1,45 +1,293 @@
 'use client';
 
+const heroKeyframes = `
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @keyframes floatUp {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+    50% { transform: translateY(-40px) scale(1.2); opacity: 0.6; }
+  }
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+`;
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+
+const ROTATING_WORDS = ['SEO', 'SEM', 'Social Media', 'Web Design', 'Content'];
+
+const STATS = [
+  { value: '420%', label: 'Avg. ROI Delivered' },
+  { value: '150+', label: 'Brands Scaled' },
+  { value: '3.2x', label: 'Traffic Uplift' },
+  { value: '#1', label: 'Agency in Jaipur' },
+];
 
 const HeroSection = () => {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLElement>(null);
+
+  /* ── Typewriter ── */
+  useEffect(() => {
+    const word = ROTATING_WORDS[wordIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isDeleting && displayText.length < word.length) {
+      timeout = setTimeout(() => setDisplayText(word.slice(0, displayText.length + 1)), 90);
+    } else if (!isDeleting && displayText.length === word.length) {
+      timeout = setTimeout(() => setIsDeleting(true), 1800);
+    } else if (isDeleting && displayText.length > 0) {
+      timeout = setTimeout(() => setDisplayText(displayText.slice(0, -1)), 45);
+    } else if (isDeleting && displayText.length === 0) {
+      setIsDeleting(false);
+      setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, wordIndex]);
+
+  /* ── Parallax orb on mouse move ── */
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      if (!heroRef.current) return;
+      const rect = heroRef.current.getBoundingClientRect();
+      setMousePos({
+        x: ((e.clientX - rect.left) / rect.width - 0.5) * 30,
+        y: ((e.clientY - rect.top) / rect.height - 0.5) * 30,
+      });
+    };
+    window.addEventListener('mousemove', handleMove);
+    return () => window.removeEventListener('mousemove', handleMove);
+  }, []);
+
   return (
-    <section className="pt-28 pb-32 bg-white overflow-hidden relative">
-      {/* Decorative Sky Blue Blob */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-primary/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
-      <div className="container-max relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <div>
-            <div className="inline-block px-4 py-2 bg-brand-secondary border border-brand-primary/20 rounded-full text-brand-primary text-[10px] font-bold uppercase tracking-[0.4em] mb-8">
-              Expert Marketing Protocols
+    <section
+      ref={heroRef}
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#020817]"
+      style={{ paddingTop: '5rem' }}
+    >
+      {/* ── Animated grid lines ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(14,165,233,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,0.05) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+        }}
+      />
+
+      {/* ── Glowing orbs ── */}
+      <div
+        className="absolute top-1/4 -left-40 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(14,165,233,0.18) 0%, transparent 70%)',
+          transform: `translate(${mousePos.x * 0.6}px, ${mousePos.y * 0.6}px)`,
+          transition: 'transform 0.1s ease-out',
+        }}
+      />
+      <div
+        className="absolute bottom-0 right-0 w-[700px] h-[700px] rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(56,189,248,0.12) 0%, transparent 70%)',
+          transform: `translate(${-mousePos.x * 0.4}px, ${-mousePos.y * 0.4}px)`,
+          transition: 'transform 0.1s ease-out',
+        }}
+      />
+
+      {/* ── Floating particles ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-brand-primary/30"
+            style={{
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `floatUp ${6 + Math.random() * 8}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 6}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* ── Main content ── */}
+      <div className="container-max relative z-10 w-full py-16">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+          {/* Left — Copy */}
+          <div className="flex flex-col gap-8">
+
+            {/* Badge */}
+            <div className="inline-flex items-center gap-3 self-start px-5 py-2.5 rounded-full border border-brand-primary/30 bg-brand-primary/10 backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+              <span className="text-brand-primary text-[10px] font-black uppercase tracking-[0.45em]">
+                Jaipur&apos;s #1 Performance Agency
+              </span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-bold text-brand-dark mb-8 leading-[1.1] tracking-tight">
-              Best <span className="text-brand-primary">Digital Marketing</span> <br/> Agency in Jaipur.
+
+            {/* Headline */}
+            <h1 className="text-5xl md:text-7xl xl:text-8xl font-black leading-[1.0] tracking-tighter text-white">
+              We Engineer{' '}
+              <br />
+              <span className="relative inline-block">
+                <span
+                  className="text-transparent bg-clip-text"
+                  style={{ backgroundImage: 'linear-gradient(135deg, #0EA5E9 0%, #38BDF8 50%, #7DD3FC 100%)' }}
+                >
+                  {displayText}
+                </span>
+                <span
+                  className="inline-block w-[3px] h-[0.85em] bg-brand-primary ml-1 align-middle"
+                  style={{ animation: 'blink 1s step-end infinite' }}
+                />
+              </span>
+              <br />
+              <span className="text-white/90">Growth.</span>
             </h1>
-            <p className="text-xl text-brand-primary mb-12 max-w-lg leading-relaxed">
-              We provide high-performance SEO, SEM, and web development services to help your business dominate the local market with global precision.
+
+            {/* Sub-copy */}
+            <p className="text-lg text-white/50 leading-relaxed max-w-lg font-light">
+              High-velocity digital marketing powered by data, not guesswork. SEO, SEM, Social, and Web — 
+              all under one elite growth protocol built for Jaipur&apos;s ambitious brands.
             </p>
-            <div className="flex flex-wrap gap-6">
-              <Link href="/#contact" className="btn-premium">
-                Start Growth Recon
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-4 pt-2">
+              <Link
+                href="/#contact"
+                className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-widest text-white overflow-hidden transition-all duration-300 hover:scale-105"
+                style={{
+                  background: 'linear-gradient(135deg, #0EA5E9, #0284C7)',
+                  boxShadow: '0 0 30px rgba(14,165,233,0.4)',
+                }}
+              >
+                <span>Start Growth Recon</span>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
-              <Link href="/services" className="border-2 border-brand-primary/30 text-brand-dark px-10 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-brand-primary hover:text-white transition-all">
-                The Protocol
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-widest text-white/70 border border-white/15 hover:border-brand-primary/60 hover:text-white transition-all duration-300"
+              >
+                View Services
               </Link>
+            </div>
+
+            {/* Stat strip */}
+            <div className="grid grid-cols-4 gap-4 pt-6 border-t border-white/8">
+              {STATS.map((s, i) => (
+                <div key={i} className="flex flex-col gap-1">
+                  <div
+                    className="text-2xl md:text-3xl font-black text-transparent bg-clip-text"
+                    style={{ backgroundImage: 'linear-gradient(135deg, #0EA5E9, #7DD3FC)' }}
+                  >
+                    {s.value}
+                  </div>
+                  <div className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/35 leading-tight">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl shadow-brand-primary/10">
-            <Image 
-              src="/korean_girl.png" 
-              alt="Orbyza Specialist" 
-              fill 
-              className="object-cover hover:scale-105 transition-transform duration-700"
-              priority
+
+          {/* Right — Image + floating cards */}
+          <div className="relative flex items-center justify-center">
+
+            {/* Glow ring behind image */}
+            <div
+              className="absolute inset-0 rounded-full blur-3xl opacity-30 pointer-events-none"
+              style={{ background: 'radial-gradient(circle, #0EA5E9 0%, transparent 70%)' }}
             />
+
+            {/* Image frame */}
+            <div
+              className="relative w-full max-w-md aspect-[3/4] rounded-[2.5rem] overflow-hidden"
+              style={{
+                border: '1px solid rgba(14,165,233,0.25)',
+                boxShadow: '0 0 80px rgba(14,165,233,0.15), inset 0 0 40px rgba(14,165,233,0.05)',
+                transform: `translate(${mousePos.x * 0.15}px, ${mousePos.y * 0.15}px)`,
+                transition: 'transform 0.1s ease-out',
+              }}
+            >
+              <Image
+                src="/orbyza_female_elite_strategist_professional_1774771830941.png"
+              sizes="(max-width: 768px) 100vw, 50vw"
+                alt="Orbyza Elite Strategist"
+                fill
+                className="object-cover object-top"
+                priority
+              />
+              {/* Overlay gradient */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(to top, #020817 0%, transparent 50%)',
+                }}
+              />
+            </div>
+
+            {/* Floating card — ROI */}
+            <div
+              className="absolute -left-8 top-12 px-5 py-4 rounded-2xl backdrop-blur-md border border-white/10 flex items-center gap-3"
+              style={{
+                background: 'rgba(14,165,233,0.12)',
+                animation: 'floatCard 4s ease-in-out infinite',
+              }}
+            >
+              <div className="w-10 h-10 rounded-xl bg-brand-primary/20 flex items-center justify-center text-brand-primary text-xl">📈</div>
+              <div>
+                <div className="text-white font-black text-sm">+420% ROI</div>
+                <div className="text-white/40 text-[10px] uppercase tracking-widest">Avg. Client Return</div>
+              </div>
+            </div>
+
+            {/* Floating card — Clients */}
+            <div
+              className="absolute -right-6 bottom-28 px-5 py-4 rounded-2xl backdrop-blur-md border border-white/10 flex items-center gap-3"
+              style={{
+                background: 'rgba(14,165,233,0.10)',
+                animation: 'floatCard 5s ease-in-out infinite',
+                animationDelay: '1.5s',
+              }}
+            >
+              <div className="w-10 h-10 rounded-xl bg-brand-primary/20 flex items-center justify-center text-brand-primary text-xl">🏆</div>
+              <div>
+                <div className="text-white font-black text-sm">150+ Brands</div>
+                <div className="text-white/40 text-[10px] uppercase tracking-widest">Scaled Globally</div>
+              </div>
+            </div>
+
+            {/* Floating card — Rating */}
+            <div
+              className="absolute left-4 bottom-10 px-5 py-4 rounded-2xl backdrop-blur-md border border-white/10 flex items-center gap-3"
+              style={{
+                background: 'rgba(14,165,233,0.10)',
+                animation: 'floatCard 6s ease-in-out infinite',
+                animationDelay: '0.8s',
+              }}
+            >
+              <div className="w-10 h-10 rounded-xl bg-yellow-500/20 flex items-center justify-center text-yellow-400 text-xl">⭐</div>
+              <div>
+                <div className="text-white font-black text-sm">5.0 Rating</div>
+                <div className="text-white/40 text-[10px] uppercase tracking-widest">Google Reviews</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* ── Keyframe styles ── */}
+      <style dangerouslySetInnerHTML={{ __html: heroKeyframes }} />
     </section>
   );
 };
