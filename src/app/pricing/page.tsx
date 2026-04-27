@@ -12,6 +12,12 @@ export const metadata: Metadata = {
     title: 'Resource Allocation // Investment Tiers',
     description: 'The investment roadmap for high-velocity scaling with Orbyza Digital Jaipur.',
     url: `${siteConfig.url}/pricing`,
+    images: [{ url: `${siteConfig.url}/og-image.jpg`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Investment Tiers | Orbyza Jaipur',
+    description: 'Transparent investment models for elite digital scaling.',
     images: [`${siteConfig.url}/og-image.jpg`],
   }
 };
@@ -19,27 +25,27 @@ export const metadata: Metadata = {
 const PricingPage = () => {
   const tiers = [
     {
-      title: "Discovery Protocol",
-      description: "Ideal for high-growth startups and local businesses in Jaipur starting their digital orbit.",
-      investment: "Starting at ₹25K/mo",
+      title: "Starter Protocol",
+      description: "Ideal for local businesses in Jaipur starting their digital orbit. Focuses on foundational visibility.",
+      investment: "₹15,000/mo",
       features: [
         "Technical SEO Foundation",
+        "Local GMB Optimization",
         "Strategic Keyword Mapping",
-        "Social Media Management (2 Channels)",
         "Monthly Intelligence Briefing",
-        "Google Business Profile Optimize"
+        "Core Web Vitals Check"
       ],
       target: "Growth Phase // Early Orbit"
     },
     {
-      title: "Scaling Architecture",
+      title: "Growth Architecture",
       description: "Our primary performance tier for brands demanding absolute search dominance and high ROI.",
-      investment: "Starting at ₹65K/mo",
+      investment: "₹35,000/mo",
       features: [
         "Advanced E-E-A-T Content Engine",
-        "Full SEM & Google Ads Management",
-        "Authority Link Acquisition (Manually Earned)",
-        "High-Performance Next.js Maintenance",
+        "Performance SEM Management",
+        "Authority Link Acquisition",
+        "High-Performance Maintenance",
         "Real-Time ROI Dashboard Access",
         "Bi-Weekly Strategy Sessions"
       ],

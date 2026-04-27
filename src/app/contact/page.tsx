@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     description: 'Stop guessing. Start winning. Partner with Jaipur elite growth engineers for absolute market dominance.',
     url: `${siteConfig.url}/contact`,
     images: [`${siteConfig.url}/og-image.jpg`],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Orbyza | Elite Marketing Hub Jaipur',
+    description: 'Partner with Jaipur elite growth engineers for absolute market dominance.',
+    images: [`${siteConfig.url}/og-image.jpg`],
   }
 };
 

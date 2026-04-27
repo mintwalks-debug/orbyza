@@ -10,6 +10,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteConfig.url}/usa`,
   },
+  openGraph: {
+    title: 'Digital Marketing USA | Elite Performance SEO & SEM Agency | Orbyza',
+    description: 'Dominating the American digital landscape. Growth agency for US-based enterprises, delivering surgical SEO and high-ROI Google Ads.',
+    url: `${siteConfig.url}/usa`,
+    images: [{ url: `${siteConfig.url}/og-image.jpg`, width: 1200, height: 630, alt: 'Orbyza USA' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing USA | Orbyza',
+    description: 'Dominating the American digital landscape.',
+    images: [`${siteConfig.url}/og-image.jpg`],
+  },
 };
 
 const USAPage = () => {

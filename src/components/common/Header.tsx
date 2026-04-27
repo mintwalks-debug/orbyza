@@ -6,11 +6,10 @@ import { Menu, X } from 'lucide-react';
 import OrbyzaLogo from './OrbyzaLogo';
 
 const navigation = [
-  { label: 'Intelligence', href: '/services' },
-  { label: 'Delhi', href: '/delhi' },
-  { label: 'Global', href: '/usa' },
-  { label: 'Academy', href: '/courses' },
-  { label: 'Protocols', href: '/portfolio' },
+  { label: 'Services', href: '/services' },
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'About', href: '/about' },
   { label: 'Connect', href: '/contact', primary: true },
 ];
 

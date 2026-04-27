@@ -1,13 +1,46 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { siteConfig } from '@/config/site';
 import { motion } from 'framer-motion';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
+import { useForm } from 'react-hook-form';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ContactClient = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+  const onSubmit = async (data: any) => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        toast.success("Intelligence Briefing Delivered // Response Protocol Initiated", {
+          style: { background: '#0F172A', color: '#FFFFFF', border: '1px solid #0047FF' }
+        });
+        reset();
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error) {
+      toast.error("Transmission Interrupted // Protocol Error", {
+        style: { background: '#0F172A', color: '#FFFFFF', border: '1px solid #EF4444' }
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="bg-[#FFFFFF] min-h-screen pt-32 pb-20 overflow-hidden relative">
+       <Toaster position="bottom-center" />
        {/* Background Ambience */}
        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0047FF]/8 blur-[150px] -z-10" />
        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#0F172A]/5 blur-[150px] -z-10" />
@@ -64,21 +97,34 @@ const ContactClient = () => {
                 <div className="absolute inset-0 bg-[#0047FF]/15 blur-[100px] rounded-full group-hover:bg-[#0047FF]/20 transition-all duration-1000 shadow-3xl" />
                 <div className="bg-[#F8FAFC] rounded-3xl relative border border-[#0047FF]/20 !p-12 shadow-3xl backdrop-blur-3xl group-hover:border-[#0047FF]/40 transition-all">
                    <h3 className="text-3xl font-black mb-12 text-[#0F172A] uppercase tracking-tighter leading-none">Deploy Your <br/><span className="text-[#0047FF] italic">Inquiry Protocol.</span></h3>
-                   <form className="space-y-10">
+                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
                       <div className="grid sm:grid-cols-2 gap-10">
                          <div className="space-y-4">
                             <label className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0047FF]/50 ml-2">Operator Name</label>
-                            <input type="text" className="w-full bg-white/50 border border-[#0047FF]/20 rounded-2xl px-8 py-5 outline-none focus:border-[#0047FF] transition-all text-[#0F172A] placeholder:text-[#0047FF]/30 font-bold" placeholder="EX: JOHN DOE" required />
+                            <input 
+                              {...register('name', { required: true })} 
+                              type="text" 
+                              className={`w-full bg-white/50 border ${errors.name ? 'border-red-500' : 'border-[#0047FF]/20'} rounded-2xl px-8 py-5 outline-none focus:border-[#0047FF] transition-all text-[#0F172A] placeholder:text-[#0047FF]/30 font-bold`} 
+                              placeholder="EX: JOHN DOE" 
+                            />
                          </div>
                          <div className="space-y-4">
                             <label className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0047FF]/50 ml-2">Communication Link</label>
-                            <input type="email" className="w-full bg-white/50 border border-[#0047FF]/20 rounded-2xl px-8 py-5 outline-none focus:border-[#0047FF] transition-all text-[#0F172A] placeholder:text-[#0047FF]/30 font-bold" placeholder="EX: HELLO@ORBYZA.COM" required />
+                            <input 
+                              {...register('email', { required: true, pattern: /^\S+@\S+$/i })} 
+                              type="email" 
+                              className={`w-full bg-white/50 border ${errors.email ? 'border-red-500' : 'border-[#0047FF]/20'} rounded-2xl px-8 py-5 outline-none focus:border-[#0047FF] transition-all text-[#0F172A] placeholder:text-[#0047FF]/30 font-bold`} 
+                              placeholder="EX: HELLO@ORBYZA.COM" 
+                            />
                          </div>
                       </div>
                       <div className="space-y-4">
                          <label className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0047FF]/50 ml-2">Mission Parameters</label>
                          <div className="relative">
-                           <select className="w-full bg-white/50 border border-[#0047FF]/20 rounded-2xl px-8 py-5 outline-none focus:border-[#0047FF] transition-all text-[#0F172A] appearance-none cursor-pointer font-bold pr-16 bg-transparent">
+                           <select 
+                             {...register('service', { required: true })}
+                             className="w-full bg-white/50 border border-[#0047FF]/20 rounded-2xl px-8 py-5 outline-none focus:border-[#0047FF] transition-all text-[#0F172A] appearance-none cursor-pointer font-bold pr-16 bg-transparent"
+                           >
                               <option value="seo">Full Spectrum SEO</option>
                               <option value="sem">Ad Dominance (SEM)</option>
                               <option value="social">Social Infiltration</option>
@@ -91,10 +137,20 @@ const ContactClient = () => {
                       </div>
                       <div className="space-y-4">
                          <label className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0047FF]/50 ml-2">Briefing Details</label>
-                         <textarea className="w-full bg-white/50 border border-[#0047FF]/20 rounded-2xl px-8 py-5 outline-none focus:border-[#0047FF] transition-all text-[#0F172A] placeholder:text-[#0047FF]/30 font-bold min-h-[160px]" placeholder="Outline your objectives..."></textarea>
+                         <textarea 
+                           {...register('message', { required: true })}
+                           className={`w-full bg-white/50 border ${errors.message ? 'border-red-500' : 'border-[#0047FF]/20'} rounded-2xl px-8 py-5 outline-none focus:border-[#0047FF] transition-all text-[#0F172A] placeholder:text-[#0047FF]/30 font-bold min-h-[160px]`} 
+                           placeholder="Outline your objectives..."
+                         ></textarea>
                       </div>
-                      <button type="submit" className="w-full !py-8 text-xl shadow-2xl relative group/btn overflow-hidden bg-[#0F172A] text-[#FFFFFF] font-bold rounded-full hover:bg-[#0047FF] transition-all uppercase tracking-widest">
-                         <span className="relative z-10 transition-transform group-hover/btn:scale-105 inline-block">Initialize Growth Protocol</span>
+                      <button 
+                        disabled={isSubmitting}
+                        type="submit" 
+                        className={`w-full !py-8 text-xl shadow-2xl relative group/btn overflow-hidden ${isSubmitting ? 'bg-brand-primary/50' : 'bg-[#0F172A]'} text-[#FFFFFF] font-bold rounded-full hover:bg-[#0047FF] transition-all uppercase tracking-widest`}
+                      >
+                         <span className="relative z-10 transition-transform group-hover/btn:scale-105 inline-block">
+                           {isSubmitting ? "Transmitting..." : "Initialize Growth Protocol"}
+                         </span>
                       </button>
                       <p className="text-[9px] text-center text-[#0047FF]/40 font-black tracking-[0.5em] uppercase">
                          Estimated Intelligence Response: 24 Hours

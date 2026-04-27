@@ -10,6 +10,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteConfig.url}/canada`,
   },
+  openGraph: {
+    title: 'Digital Marketing Canada | Performance SEO & Web Design | Orbyza',
+    description: 'Premier performance marketing for Canadian brands seeking global scale. Specialized in technical SEO and high-conversion web engineering.',
+    url: `${siteConfig.url}/canada`,
+    images: [{ url: `${siteConfig.url}/og-image.jpg`, width: 1200, height: 630, alt: 'Orbyza Canada' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Canada | Orbyza',
+    description: 'Premier performance marketing for Canadian brands.',
+    images: [`${siteConfig.url}/og-image.jpg`],
+  },
 };
 
 const CanadaPage = () => {

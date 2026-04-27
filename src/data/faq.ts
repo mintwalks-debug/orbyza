@@ -1,22 +1,26 @@
 export const faqs = [
   {
     question: "How long does it take to see SEO results?",
-    answer: "Significant SEO results usually take between 3 to 6 months. It depends on your industry keyword difficulty and the technical state of your domain.",
+    answer: "Significant SEO results usually take between 3 to 6 months. While minor improvements occur in the first 90 days, peak performance typically hits at the 6-9 month mark.",
   },
   {
-    question: "Do you guarantee a #1 ranking on Google?",
-    answer: "No ethical agency guarantees a specific ranking because search algorithms change constantly. We do guarantee best-practice optimization and measurable traffic growth.",
+    question: "What's the difference between local SEO and organic SEO?",
+    answer: "Local SEO focuses on capturing intent in a specific region like 'Jaipur' using maps and regional citations. Organic SEO targets broader global or national queries to build long-term authority.",
   },
   {
-    question: "Can I cancel my monthly marketing plan?",
-    answer: "Yes, our monthly plans are flexible. We require a 30-day notice for cancellation to wind down active campaigns and final reporting.",
+    question: "Do you guarantee #1 rankings?",
+    answer: "No ethical agency guarantees a specific #1 spot because search algorithms change. However, we do guarantee best-practice technical engineering and measurable traffic/revenue growth.",
   },
   {
-    question: "Is social media management included in SEO?",
-    answer: "SEO and Social Media are handled by separate specialists. They can be combined as a bundle for a customized monthly package.",
+    question: "How much does SEO cost in Jaipur?",
+    answer: "Our SEO protocols start at ₹15,000/month for small businesses and scale based on market competition and growth objectives.",
+  },
+  {
+    question: "Is social media management included?",
+    answer: "SEO and Social Media are separate execution vectors but are often bundled into our Scaling Architecture plans for total market dominance.",
   },
   {
     question: "Do you provide custom reporting?",
-    answer: "Absolutely. We provide monthly data reports showing conversions, traffic sources, and KPI progress across all active marketing channels.",
+    answer: "Absolutely. We provide real-time ROI dashboards and monthly intelligence briefings to link every rupee of spend to a measurable business unit.",
   }
 ];

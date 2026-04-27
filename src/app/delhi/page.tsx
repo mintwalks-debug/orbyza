@@ -11,6 +11,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteConfig.url}/delhi`,
   },
+  openGraph: {
+    title: 'Digital Marketing Agency Delhi | #1 Performance Marketing Orbyza',
+    description: 'Premier digital marketing in Delhi, delivering 420% ROI growth for brands in CP, Laxmi Nagar, and South Delhi.',
+    url: `${siteConfig.url}/delhi`,
+    images: [{ url: `${siteConfig.url}/og-image.jpg`, width: 1200, height: 630, alt: 'Orbyza Delhi' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Agency Delhi | Orbyza',
+    description: 'Premier digital marketing in Delhi.',
+    images: [`${siteConfig.url}/og-image.jpg`],
+  },
 };
 
 const DelhiPage = () => {

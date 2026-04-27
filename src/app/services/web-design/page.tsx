@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     description: 'Next-gen web design and development in Jaipur. We build high-speed, SEO-optimized websites using Next.js and React technology.',
     url: `${siteConfig.url}/services/web-design`,
     images: [`${siteConfig.url}/og-image.jpg`],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Web Design Company Jaipur | Orbyza',
+    description: 'Next-gen web design and development in Jaipur.',
+    images: [`${siteConfig.url}/og-image.jpg`],
   }
 };
 

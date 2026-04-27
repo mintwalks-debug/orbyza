@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/db';
+import { supabase } from '@/lib/supabase';
 import nodemailer from 'nodemailer';
 
 export const dynamic = 'force-dynamic';
@@ -14,15 +14,22 @@ export async function POST(req: Request) {
        return NextResponse.json({ success: true, message: "Build mode standby" });
     }
 
-    // 1. Store in DB using Prisma
-    await db.contactSubmission.create({
-      data: {
-        name,
-        email,
-        subject: `Service Inquiry: ${service}`,
-        message: message || "No message provided.",
-      }
-    });
+    // 1. Store in DB using Supabase
+    const { error: dbError } = await supabase
+      .from('contact_submissions')
+      .insert([
+        {
+          name,
+          email,
+          message: message || "No message provided.",
+          service_interested: service || "General Inquiry",
+        }
+      ]);
+
+    if (dbError) {
+      console.error("Supabase Error:", dbError);
+      // We continue to email even if DB fails, or handle as needed
+    }
 
     // 2. Configure Nodemailer
     const transporter = nodemailer.createTransport({

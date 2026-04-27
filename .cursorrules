@@ -1,0 +1,38 @@
+# Orbyza Agency - Cursor Intelligence Protocol
+
+## Core Stack
+- **Framework**: Next.js 16 (App Router + Turbopack)
+- **Backend**: Supabase (via @supabase/supabase-js)
+- **Styling**: Tailwind CSS 4 + Framer Motion
+- **Architecture**: 6-Tool Stack (Antigravity -> GitHub -> v0 -> Cursor -> Supabase -> Vercel)
+
+## Design System: "Cinematic Dark Mode"
+- **Color Palette**: 
+  - Primary: `#0EA5E9` (Sky Blue / High-tech Glow)
+  - Secondary: `#F8FAFC` (Clean background for light areas)
+  - Dark: `#0C4A6E` (Deep navy for high-contrast sections)
+- **Aesthetic**:
+  - Use `glass-card` class for container elements.
+  - Apply `heading-xl` with uppercase black tracking-tighter for impact.
+  - Use `framer-motion` for all transitions (scale, rotate, fade-in).
+  - Backgrounds should use blur orbs (`blur-[150px]`) for depth.
+
+## SEO Mandatory Rules
+- Every page component MUST export a `Metadata` object.
+- Include `alternates: { canonical: ... }` for all pages.
+- Ensure only one `<h1>` per page.
+- Use `JSON-LD` for services and blog posts (already integrated in ServiceDetail.tsx).
+
+## Backend (Supabase) Rules
+- Always use `import { supabase } from '@/lib/supabase'` for data fetching.
+- For server-side privileged operations, use `getSupabaseAdmin()`.
+- Reference the schema in `C:\Users\Ashok Sharma\.gemini\antigravity\brain\2aa57413-b5de-4f83-8c32-5c9ab3d963a6\supabase_schema.sql` for table structures.
+
+## Deployment
+- Deployment is automated via Vercel on push to `main`.
+- Always verify local build (`npm run build`) before pushing complex UI changes.
+
+## AI Instructions
+- When refining UI, aim for "Absolute Dominance" aesthetic.
+- Avoid generic placeholders; use cinematic copy (e.g., "Execution Vectors", "Intelligence Archive", "Surgical Marketing").
+- Keep components small and focused.

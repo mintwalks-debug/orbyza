@@ -80,50 +80,50 @@ const ContactSection = () => {
                         </div>
                     </div>
 
-                    <div className="bg-brand-primary border border-brand-primary/20 p-12 rounded-[40px] shadow-2xl shadow-brand-primary/20 text-white relative overflow-hidden">
+                    <div className="bg-white border border-brand-border p-12 rounded-[40px] shadow-2xl shadow-slate-200 text-brand-dark relative overflow-hidden">
                         {status === 'success' ? (
                             <motion.div 
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 className="h-full flex flex-col items-center justify-center text-center space-y-6 py-12"
                             >
-                                <CheckCircle2 size={80} className="text-white animate-bounce" />
+                                <CheckCircle2 size={80} className="text-brand-primary animate-bounce" />
                                 <h3 className="text-3xl font-bold uppercase tracking-tighter">Transmission Successful</h3>
-                                <p className="text-white/70 max-w-xs mx-auto">Your growth data has been received. Our squad will initiate contact within 24 hours.</p>
-                                <button onClick={() => setStatus('idle')} className="text-xs uppercase tracking-widest font-black underline underline-offset-8">Send another brief</button>
+                                <p className="text-brand-muted max-w-xs mx-auto">Your growth data has been received. Our squad will initiate contact within 24 hours.</p>
+                                <button onClick={() => setStatus('idle')} className="text-xs uppercase tracking-widest font-black underline underline-offset-8 text-brand-primary">Send another brief</button>
                             </motion.div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-bold uppercase tracking-widest text-white/70 ml-4">Identifier</label>
+                                        <label className="text-[10px] font-bold uppercase tracking-widest text-brand-muted ml-4">Identifier</label>
                                         <input 
                                             required
                                             type="text" 
                                             placeholder="Your Name" 
                                             value={formData.name}
                                             onChange={(e) => setFormData({...formData, name: e.target.value})}
-                                            className="w-full bg-white/10 border border-white/30 rounded-2xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-white transition-all md:text-sm" 
+                                            className="w-full bg-slate-50 border border-brand-border rounded-2xl px-6 py-4 text-brand-dark placeholder:text-slate-400 focus:outline-none focus:border-brand-primary transition-all md:text-sm" 
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-bold uppercase tracking-widest text-white/70 ml-4">Transmission Node</label>
+                                        <label className="text-[10px] font-bold uppercase tracking-widest text-brand-muted ml-4">Transmission Node</label>
                                         <input 
                                             required
                                             type="email" 
                                             placeholder="Email Address" 
                                             value={formData.email}
                                             onChange={(e) => setFormData({...formData, email: e.target.value})}
-                                            className="w-full bg-white/10 border border-white/30 rounded-2xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-white transition-all md:text-sm" 
+                                            className="w-full bg-slate-50 border border-brand-border rounded-2xl px-6 py-4 text-brand-dark placeholder:text-slate-400 focus:outline-none focus:border-brand-primary transition-all md:text-sm" 
                                         />
                                     </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/70 ml-4">Operation Objective</label>
+                                    <label className="text-[10px] font-bold uppercase tracking-widest text-brand-muted ml-4">Operation Objective</label>
                                     <select 
                                         value={formData.service}
                                         onChange={(e) => setFormData({...formData, service: e.target.value})}
-                                        className="w-full bg-white/10 border border-white/30 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-white transition-all md:text-sm appearance-none cursor-pointer"
+                                        className="w-full bg-slate-50 border border-brand-border rounded-2xl px-6 py-4 text-brand-dark focus:outline-none focus:border-brand-primary transition-all md:text-sm appearance-none cursor-pointer"
                                     >
                                         <option className="text-brand-dark">Search Dominance (SEO)</option>
                                         <option className="text-brand-dark">Paid Infiltration (SEM)</option>
@@ -132,20 +132,20 @@ const ContactSection = () => {
                                     </select>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/70 ml-4">Intelligence Brief</label>
+                                    <label className="text-[10px] font-bold uppercase tracking-widest text-brand-muted ml-4">Intelligence Brief</label>
                                     <textarea 
                                         required
                                         rows={4} 
                                         placeholder="Describe your growth parameters..." 
                                         value={formData.message}
                                         onChange={(e) => setFormData({...formData, message: e.target.value})}
-                                        className="w-full bg-white/10 border border-white/30 rounded-2xl px-6 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-white transition-all md:text-sm"
+                                        className="w-full bg-slate-50 border border-brand-border rounded-2xl px-6 py-4 text-brand-dark placeholder:text-slate-400 focus:outline-none focus:border-brand-primary transition-all md:text-sm"
                                     ></textarea>
                                 </div>
                                 <button 
                                     disabled={status === 'loading'}
                                     type="submit" 
-                                    className="w-full py-6 mt-4 bg-white text-brand-primary font-bold rounded-full hover:bg-brand-secondary hover:text-brand-dark transition-all uppercase tracking-widest text-sm flex items-center justify-center gap-3 disabled:opacity-50"
+                                    className="w-full py-6 mt-4 bg-brand-primary text-white font-bold rounded-full hover:bg-brand-dark transition-all uppercase tracking-widest text-sm flex items-center justify-center gap-3 disabled:opacity-50"
                                 >
                                     {status === 'loading' ? (
                                         <><Loader2 className="animate-spin" size={20} /> Processing...</>
@@ -153,7 +153,7 @@ const ContactSection = () => {
                                         'Deploy Inquiry →'
                                     )}
                                 </button>
-                                {status === 'error' && <p className="text-center text-xs font-bold uppercase text-red-200 mt-4 tracking-widest">Transmission Failure. Please try again.</p>}
+                                {status === 'error' && <p className="text-center text-xs font-bold uppercase text-red-500 mt-4 tracking-widest">Transmission Failure. Please try again.</p>}
                             </form>
                         )}
                     </div>

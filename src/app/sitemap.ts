@@ -49,5 +49,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...hubs, ...services, ...institutional, ...portfolioRoutes];
+  // Blog routes
+  const blogs = [
+    '/blog/best-seo-agency-in-jaipur',
+    '/blog/digital-marketing-for-e-commerce',
+    '/blog/sem-vs-seo',
+  ].map((route) => ({
+    url: `${siteConfig.url}${route}`,
+    lastModified: lastMod,
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }));
+
+  return [...hubs, ...services, ...institutional, ...portfolioRoutes, ...blogs];
 }

@@ -1,46 +1,38 @@
-import { Search, TrendingUp, Share2, FileText, Mail, Monitor } from 'lucide-react';
-
 export const services = [
-  { 
-    id: 'seo', 
-    label: 'SEO Services', 
-    description: 'Optimize your website for organic search engine rankings.', 
-    icon: Search,
-    image: '/service_seo.png'
+  {
+    id: "digital-marketing",
+    label: "Digital Marketing",
+    description: "Holistic growth protocols for Tier 1 India and International market expansion.",
+    icon: "Globe"
   },
-  { 
-    id: 'sem', 
-    label: 'SEM / Google Ads', 
-    description: 'Drive instant traffic with expert-managed pay-per-click campaigns.', 
-    icon: TrendingUp,
-    image: '/service_sem.png'
+  {
+    id: "seo",
+    label: "SEO Services",
+    description: "Surgical local and organic search optimization to dominate Google rankings.",
+    icon: "Search"
   },
-  { 
-    id: 'social-media', 
-    label: 'Social Media Marketing', 
-    description: 'Grow and engage your audience on popular social platforms.', 
-    icon: Share2,
-    image: '/service_social.png'
+  {
+    id: "ppc-google-ads",
+    label: "PPC / Google Ads",
+    description: "High-ROAS performance marketing and precision-targeted search advertising.",
+    icon: "TrendingUp"
   },
-  { 
-    id: 'content-marketing', 
-    label: 'Content Marketing', 
-    description: 'Create and distribute valuable content to your target market.', 
-    icon: FileText,
-    image: '/service_content.png'
+  {
+    id: "web-development",
+    label: "Web Development",
+    description: "Lightning-fast Next.js architecture built for conversion and speed.",
+    icon: "Code"
   },
-  { 
-    id: 'email-marketing', 
-    label: 'Email Marketing', 
-    description: 'Convert leads into customers with personalized email campaigns.', 
-    icon: Mail,
-    image: '/service_email.png'
+  {
+    id: "social-media-marketing",
+    label: "Social Media",
+    description: "Brand-first social dominance and community building strategies.",
+    icon: "Share2"
   },
-  { 
-    id: 'web-design', 
-    label: 'Web Design', 
-    description: 'Responsive, modern, and user-friendly websites designed for performance.', 
-    icon: Monitor,
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426'
-  },
+  {
+    id: "branding",
+    label: "Branding & Design",
+    description: "Elite visual identity and high-end creative direction for global brands.",
+    icon: "Palette"
+  }
 ];

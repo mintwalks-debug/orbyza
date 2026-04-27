@@ -10,8 +10,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Google Ads & SEM Agency Jaipur | High ROI PPC Expert Orbyza',
-    description: 'Maximize your digital advertising ROI with PPC specialists in Jaipur. High-performance Google Ads and SEM strategies.',
+    description: 'Maximize your digital advertising ROI with PPC specialists in Jaipur. High-performance Google Ads and SEM strategies for immediate scale.',
     url: `${siteConfig.url}/services/sem`,
+    images: [`${siteConfig.url}/og-image.jpg`],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Google Ads Dominance | SEM Agency Jaipur',
+    description: 'Surgical PPC management for brands that demand ROI.',
     images: [`${siteConfig.url}/og-image.jpg`],
   }
 };
@@ -19,23 +25,77 @@ export const metadata: Metadata = {
 export default function SEMPage() {
   return (
     <ServiceDetail
-      title="Search Engine Marketing (SEM / PPC)"
-      description="Maximize your ROI with precision-targeted Google Ads and search engine marketing. We build high-conversion campaigns that put your brand directly in front of buyers."
+      title="Dominate Search. Drive Instant ROI."
+      description="Surgical SEM and Google Ads management for Jaipur's elite brands. We turn advertising spend into a predictable revenue engine through high-velocity performance engineering."
       iconName="TrendingUp"
+      image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426"
       features={[
-        "Google Ads Management",
-        "Landing Page Analysis",
-        "Conversion Rate Opt.",
-        "Monthly Reporting",
-        "Audience Targeting",
-        "Retargeting Campaigns",
-        "Bid Optimization",
-        "Performance Analytics"
+        "Strategic Account Architecture",
+        "High-Intent Keyword Mining",
+        "Cinematic Ad Copywriting",
+        "Landing Page Performance Opt.",
+        "Dynamic Remarketing Matrix",
+        "A/B Testing & Data Feedback",
+        "Competitor Ad Infiltration",
+        "24/7 ROI Monitoring"
       ]}
       longDescription={`
-        <p>While SEO builds long-term foundation, <strong>Search Engine Marketing (SEM)</strong> is your engine for immediate digital acceleration. At Orbyza, we don't just manage budgets; we engineer ROI. As a premier Google Ads partner in Jaipur, we specialize in building granular, high-intent campaigns that convert casual searchers into paying customers.</p>
-        <p>Our approach to SEM/PPC is ruthlessly data-driven. We believe every rupee of your advertising spend should be held accountable. Through advanced keyword research, rigorous A/B testing of ad copy, and strategic landing page optimization, we ensure your brand captures market share while maintaining a healthy cost-per-acquisition (CPA).</p>
-        <p>In a world where PPC costs are constantly rising, our expertise in Jaipur's competitive search landscape gives you the tactical advantage. We look beyond clicks to focus on metrics that actually impact your bottom line: conversions, sales, and lifetime customer value.</p>
+        <div className="space-y-12">
+          <section>
+            <h3 className="text-2xl font-black text-white uppercase italic mb-6">Immediate Market Penetration. Zero Guesswork.</h3>
+            <p>While SEO builds your digital fortress, <strong>SEM (Search Engine Marketing)</strong> is your tactical strike force. At Orbyza, we don't just "run ads"; we engineer revenue outcomes. As Jaipur's premier performance marketing agency, we specialize in building granular, high-conversion Google Ads campaigns that capture buyers at the exact moment of intent.</p>
+          </section>
+
+          <section>
+            <h3 className="text-2xl font-black text-white uppercase italic mb-8">The Orbyza SEM Protocol</h3>
+            <div className="grid sm:grid-cols-2 gap-8 not-prose">
+              <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                <div className="text-brand-primary font-black mb-2">Vector 1: Intelligence</div>
+                <p className="text-sm text-white/60">We identify high-ROAS keywords that your competitors are missing, targeting the "Ready-to-Buy" segment.</p>
+              </div>
+              <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                <div className="text-brand-primary font-black mb-2">Vector 2: Architecture</div>
+                <p className="text-sm text-white/60">Building surgical account structures that maximize Quality Score and minimize your cost-per-click.</p>
+              </div>
+              <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                <div className="text-brand-primary font-black mb-2">Vector 3: Conversion</div>
+                <p className="text-sm text-white/60">Every ad leads to a high-speed, persuasive landing path designed for one purpose: the conversion.</p>
+              </div>
+              <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                <div className="text-brand-primary font-black mb-2">Vector 4: Refinement</div>
+                <p className="text-sm text-white/60">Continuous A/B testing and algorithm feedback ensures your ROI only increases over time.</p>
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-brand-primary/10 p-10 rounded-[2rem] border border-brand-primary/20">
+            <h3 className="text-2xl font-black text-white uppercase italic mb-8 text-center">SEM Success Metrics</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+              <div>
+                <div className="text-3xl font-black text-brand-primary mb-1">5.2x</div>
+                <div className="text-[9px] uppercase tracking-widest text-white/40">Avg. ROAS</div>
+              </div>
+              <div>
+                <div className="text-3xl font-black text-brand-primary mb-1">-28%</div>
+                <div className="text-[9px] uppercase tracking-widest text-white/40">CPA Reduction</div>
+              </div>
+              <div>
+                <div className="text-3xl font-black text-brand-primary mb-1">100%</div>
+                <div className="text-[9px] uppercase tracking-widest text-white/40">Transparency</div>
+              </div>
+              <div>
+                <div className="text-3xl font-black text-brand-primary mb-1">24H</div>
+                <div className="text-[9px] uppercase tracking-widest text-white/40">Launch Window</div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3 className="text-2xl font-black text-white uppercase italic mb-8">Ready to Scale Your Spend?</h3>
+            <p className="mb-10">Stop burning your budget on "broad match" mediocrity. Join the Jaipur brands that use SEM as a precision revenue engine. Let's audit your current account or build your first world-class campaign.</p>
+            <Link href="/contact" className="btn-premium px-16 py-8 inline-block">Initialize SEM Growth Protocol →</Link>
+          </section>
+        </div>
       `}
       methodology={[
         { 

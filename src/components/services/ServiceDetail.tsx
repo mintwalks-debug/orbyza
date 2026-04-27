@@ -12,9 +12,11 @@ interface ServiceDetailProps {
   iconName: string;
   features: string[];
   image?: string;
+  painPoints?: string[]; // Added for Master Plan
   longDescription?: string;
   methodology?: { title: string; desc: string }[];
   roiDetails?: string;
+  pricing?: { tier: string; price: string; features: string[] }[]; // Added for Master Plan
   faqs?: { q: string; a: string }[];
 }
 
@@ -111,12 +113,12 @@ const ServiceDetail = ({
                 </motion.div>
                 
                 <h1 className="heading-xl !text-5xl md:!text-7xl lg:!text-8xl mb-8">
-                  <span className="bg-gradient-to-r from-brand-primary via-brand-dark to-brand-primary bg-[length:200%_auto] animate-[gradient_8s_linear_infinite] bg-clip-text text-transparent uppercase font-black tracking-tighter leading-none block">
+                  <span className="text-brand-dark uppercase font-black tracking-tighter leading-none block">
                     {title}
                   </span>
                 </h1>
                 
-                <p className="subheading mb-12 mx-auto lg:mx-0 !text-brand-primary max-w-xl">
+                <p className="subheading mb-12 mx-auto lg:mx-0 max-w-xl">
                   {description}
                 </p>
 
@@ -127,19 +129,19 @@ const ServiceDetail = ({
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="glass-card !p-4 !border-brand-primary/15 flex items-center gap-3 group hover:!border-brand-primary/40 transition-all duration-500"
+                      className="glass-card !p-5 !border-brand-border flex items-center gap-4 group hover:!border-brand-primary/40 transition-all duration-500"
                     >
-                      <div className="w-1.5 h-1.5 rounded-full bg-brand-primary shadow-[0_0_10px_rgba(14,165,233,0.5)]" />
-                      <span className="text-[11px] font-black uppercase tracking-widest text-brand-primary group-hover:text-brand-dark transition-colors">{f}</span>
+                      <div className="w-2 h-2 rounded-full bg-brand-primary shadow-lg shadow-brand-primary/30" />
+                      <span className="text-[11px] font-black uppercase tracking-widest text-brand-dark group-hover:text-brand-primary transition-colors">{f}</span>
                     </motion.div>
                   ))}
                 </div>
 
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-8">
-                  <Link href="/contact" className="btn-premium px-10 py-6">
+                  <Link href="/contact" className="btn-premium px-12 py-6">
                     Initialize Protocol →
                   </Link>
-                  <Link href="/portfolio" className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-primary/60 hover:text-brand-dark transition-all group">
+                  <Link href="/portfolio" className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-muted hover:text-brand-primary transition-all group">
                     View Case Studies <span className="inline-block group-hover:translate-x-2 transition-transform">+</span>
                   </Link>
                 </div>
@@ -181,6 +183,26 @@ const ServiceDetail = ({
         </div>
       </section>
 
+      {/* Problem / Pain Points Section (Master Plan Section 1.3) */}
+      {painPoints && painPoints.length > 0 && (
+        <section className="py-24 bg-brand-secondary/30 border-y border-brand-border">
+          <div className="container-max">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-black text-brand-dark uppercase italic mb-4">Critical Market Friction</h2>
+              <p className="text-brand-muted max-w-2xl mx-auto">Common challenges that inhibit brand velocity and growth efficiency.</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {painPoints.map((point, i) => (
+                <div key={i} className="bg-white p-10 rounded-[2.5rem] border border-brand-border shadow-xl shadow-slate-200/50">
+                  <div className="w-10 h-10 bg-brand-accent/10 text-brand-accent rounded-full flex items-center justify-center mb-6 font-black italic">!</div>
+                  <p className="text-brand-dark font-medium leading-relaxed">{point}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Expanded Content Section */}
       <section className="section-padding bg-white">
         <div className="container-max">
@@ -189,7 +211,7 @@ const ServiceDetail = ({
               {longDescription && (
                 <div>
                   <h2 className="text-3xl font-black text-brand-dark uppercase tracking-tighter mb-8 italic">The Orbyza <span className="text-brand-primary underline decoration-brand-primary/30 underline-offset-8">Philosophy.</span></h2>
-                  <div className="text-brand-primary leading-relaxed text-lg space-y-6" dangerouslySetInnerHTML={{ __html: longDescription }} />
+                  <div className="text-brand-muted leading-relaxed text-lg space-y-6" dangerouslySetInnerHTML={{ __html: longDescription }} />
                 </div>
               )}
 
@@ -198,10 +220,10 @@ const ServiceDetail = ({
                   <h2 className="text-3xl font-black text-brand-dark uppercase tracking-tighter mb-12 italic">Our <span className="text-brand-primary underline decoration-brand-primary/30 underline-offset-8">Methodology.</span></h2>
                   <div className="grid sm:grid-cols-2 gap-8">
                     {methodology.map((m, i) => (
-                      <div key={i} className="glass-card !p-8 !border-brand-primary/15 hover:!border-brand-primary/40 transition-all group">
+                      <div key={i} className="glass-card !p-8 !border-brand-border hover:!border-brand-primary/30 transition-all group">
                          <div className="text-brand-primary font-black text-xs mb-4 opacity-50">PHASE // 0{i+1}</div>
                          <h3 className="text-brand-dark font-bold text-xl mb-4 uppercase tracking-tight group-hover:text-brand-primary transition-colors">{m.title}</h3>
-                         <p className="text-brand-primary/70 text-sm leading-relaxed">{m.desc}</p>
+                         <p className="text-brand-muted text-sm leading-relaxed">{m.desc}</p>
                       </div>
                     ))}
                   </div>

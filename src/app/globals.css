@@ -1,30 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", sans-serif;
-  --color-brand-primary: #0EA5E9;
-  --color-brand-secondary: #F0F9FF;
-  --color-brand-accent: #38BDF8;
-  --color-brand-text: #0C4A6E;
-  --color-brand-obsidian: #082F49;
-  --color-brand-indigo: #0284C7;
-  --color-brand-tangerine: #0EA5E9;
-  --color-brand-beige: #FFFFFF;
-  --color-brand-brown: #0EA5E9;
-  --color-brand-dark: #075985;
-  --color-brand-green: #38BDF8;
-  --color-brand-navy: #0369A1;
+  --font-jakarta: var(--font-jakarta), "Plus Jakarta Sans", sans-serif;
+  --font-inter: var(--font-inter), "Inter", sans-serif;
+  --color-brand-primary: #0072CE;
+  --color-brand-secondary: #EEF4FB;
+  --color-brand-accent: #F47920;
+  --color-brand-dark: #1E3A5F;
+  --color-brand-muted: #666666;
+  --color-brand-border: #E2E8F0;
+  --color-brand-success: #00A651;
 }
 
 @layer base {
   html, body {
-    @apply bg-white text-slate-900 font-sans antialiased;
+    @apply bg-white text-[#1A1A2E] font-inter antialiased;
     margin: 0;
     padding: 0;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold text-slate-950;
+    @apply font-jakarta font-bold text-[#1E3A5F];
   }
 
   a {
@@ -42,10 +38,18 @@
   }
 
   .btn-premium {
-    @apply bg-brand-primary text-white font-bold px-8 py-4 rounded-full hover:bg-brand-dark transition-all shadow-lg shadow-brand-primary/20 inline-block;
+    @apply bg-brand-primary text-white font-bold px-8 py-4 rounded-full hover:bg-brand-dark transition-all shadow-xl shadow-brand-primary/20 inline-block uppercase tracking-widest text-[10px];
   }
 
   .glass-card {
-    @apply bg-white/80 border border-slate-200/50 rounded-3xl p-8 shadow-xl shadow-slate-900/5 backdrop-blur-sm;
+    @apply bg-white border border-brand-border rounded-[2.5rem] p-10 shadow-2xl shadow-slate-200/50 transition-all duration-500 hover:border-brand-primary/30;
+  }
+
+  .heading-xl {
+    @apply text-5xl md:text-7xl lg:text-8xl font-black text-brand-dark uppercase tracking-tighter leading-[0.9] mb-8;
+  }
+
+  .subheading {
+    @apply text-lg text-brand-muted font-medium leading-relaxed max-w-2xl;
   }
 }

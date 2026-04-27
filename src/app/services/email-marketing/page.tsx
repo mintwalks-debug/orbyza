@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     description: 'Nurture leads and drive repeat business with sophisticated email marketing funnels and automation in Jaipur.',
     url: `${siteConfig.url}/services/email-marketing`,
     images: [`${siteConfig.url}/og-image.jpg`],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Email Marketing Services Jaipur | Orbyza',
+    description: 'Nurture leads and drive repeat business with sophisticated email marketing.',
+    images: [`${siteConfig.url}/og-image.jpg`],
   }
 };
 

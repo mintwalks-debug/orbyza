@@ -3,8 +3,23 @@ import { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'About Orbyza | Digital Marketing Agency',
-  description: 'Learn about Orbyza and our mission to provide Jaipur businesses with high-performance marketing.',
+  title: 'About Orbyza | Elite Digital Marketing Agency Jaipur',
+  description: 'Learn about Orbyza — Jaipur\'s premier performance marketing agency. Founded to bridge creative ambition and technical precision, we deliver 420% ROI for brands across India, USA, Canada, and Europe.',
+  alternates: {
+    canonical: `${siteConfig.url}/about`,
+  },
+  openGraph: {
+    title: 'About Orbyza | Elite Digital Marketing Agency Jaipur',
+    description: 'The story behind Jaipur\'s #1 performance marketing agency. 500+ projects, 150+ brands scaled, 420% avg ROI.',
+    url: `${siteConfig.url}/about`,
+    images: [{ url: `${siteConfig.url}/og-image.jpg`, width: 1200, height: 630, alt: 'About Orbyza Digital Marketing Agency' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Orbyza | Elite Digital Marketing Agency Jaipur',
+    description: 'The story behind Jaipur\'s #1 performance marketing agency.',
+    images: [`${siteConfig.url}/og-image.jpg`],
+  },
 };
 
 const AboutPage = () => {

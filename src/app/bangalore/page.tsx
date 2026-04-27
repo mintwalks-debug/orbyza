@@ -11,6 +11,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteConfig.url}/bangalore`,
   },
+  openGraph: {
+    title: 'Digital Marketing Agency Bangalore | Orbyza',
+    description: 'Premier performance marketing in Bangalore. 420% ROI growth for Silicon Valley startups and enterprises.',
+    url: `${siteConfig.url}/bangalore`,
+    images: [{ url: `${siteConfig.url}/og-image.jpg`, width: 1200, height: 630, alt: 'Orbyza Bangalore' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Digital Marketing Agency Bangalore | Orbyza',
+    description: 'Premier performance marketing in Bangalore.',
+    images: [`${siteConfig.url}/og-image.jpg`],
+  },
 };
 
 const BangalorePage = () => {

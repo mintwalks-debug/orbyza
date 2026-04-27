@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     description: 'Elevate your brand presence across social platforms. We specialize in high-impact SMM and community growth for Jaipur businesses.',
     url: `${siteConfig.url}/services/social-media`,
     images: [`${siteConfig.url}/og-image.jpg`],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Social Media Marketing Company Jaipur | Orbyza',
+    description: 'Elevate your brand presence across social platforms.',
+    images: [`${siteConfig.url}/og-image.jpg`],
   }
 };
 

@@ -37,7 +37,7 @@ export default function BlogListingPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {blogPosts.map((post) => (
-              <div key={post.id} className="bg-brand-secondary border border-brand-primary/10 rounded-3xl !p-0 group overflow-hidden hover:border-brand-primary transition-all duration-500 shadow-xl shadow-brand-primary/5">
+              <Link key={post.id} href={`/blog/${post.slug}`} className="bg-brand-secondary border border-brand-primary/10 rounded-3xl !p-0 group overflow-hidden hover:border-brand-primary transition-all duration-500 shadow-xl shadow-brand-primary/5 block">
                 <div className="aspect-video relative overflow-hidden bg-brand-primary/5 transition-all duration-700">
                    <img src={post.thumbnail} alt={post.title} className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-1000 group-hover:opacity-90" />
                 </div>
@@ -54,7 +54,7 @@ export default function BlogListingPage() {
                       <div className="text-[9px] font-black uppercase tracking-widest text-brand-primary/60 italic">{post.author} <span className="text-brand-primary/30 mx-2">•</span> {post.date}</div>
                    </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

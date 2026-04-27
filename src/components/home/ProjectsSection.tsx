@@ -40,22 +40,22 @@ const projects = [
 
 const ProjectsSection = () => {
     return (
-        <section className="py-32 bg-brand-primary" id="projects">
+        <section className="py-32 bg-white" id="projects">
             <div className="container-max">
                 <div className="flex flex-col md:flex-row justify-between items-end gap-12 mb-24">
-                    <div>
-                        <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-white mb-6">Execution Outcomes</div>
-                        <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 uppercase tracking-tighter">
-                            Case <span className="text-brand-secondary">Studies.</span>
+                    <div className="text-center lg:text-left w-full lg:w-auto">
+                        <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-primary mb-6">Execution Outcomes</div>
+                        <h2 className="heading-xl">
+                            Case <span className="text-brand-primary italic">Studies.</span>
                         </h2>
-                        <p className="text-xl text-white/70 max-w-2xl leading-relaxed">Our recent work and results for clients across the global digital landscape.</p>
+                        <p className="subheading mx-auto lg:mx-0">Our recent work and results for clients across the global digital landscape.</p>
                     </div>
-                    <Link href="/portfolio" className="bg-white text-brand-primary font-bold px-10 py-5 rounded-full uppercase tracking-widest text-[10px] hover:bg-brand-secondary hover:text-brand-dark transition-all inline-block">View Full Portfolio →</Link>
+                    <Link href="/portfolio" className="btn-premium px-10 py-5">View Full Portfolio →</Link>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-12">
+                <div className="grid md:grid-cols-2 gap-16">
                     {projects.map((project) => (
-                        <div key={project.id} className="group bg-white rounded-3xl overflow-hidden border border-white/10 hover:border-white/40 hover:shadow-2xl hover:shadow-white/10 transition-all">
+                        <div key={project.id} className="group bg-white rounded-[3rem] overflow-hidden border border-brand-border hover:border-brand-primary/30 shadow-2xl shadow-slate-200/50 transition-all duration-700">
                             <div className="relative aspect-[16/10] overflow-hidden">
                                 <Image 
                                     src={project.img} 

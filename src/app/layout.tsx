@@ -3,27 +3,32 @@ import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { OrganizationSchema, LocalBusinessSchema } from '@/components/common/JsonLd';
 import { siteConfig } from '@/config/site';
-import { Outfit } from 'next/font/google';
+import { Plus_Jakarta_Sans, Inter } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 
-const outfit = Outfit({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-outfit',
+  variable: '--font-jakarta',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
 });
 
 export const metadata = {
   title: {
-    default: `Orbyza | ${siteConfig.tagline}`,
-    template: `%s | ${siteConfig.name}`,
+    default: `Digital Marketing Agency India | Orbyza`,
+    template: `%s | Orbyza`,
   },
-  description: siteConfig.description,
-  keywords: siteConfig.keywords,
+  description: 'Orbyza: India\'s results-driven digital marketing agency. SEO, PPC, Web Design & Social Media for brands in Mumbai, Delhi & beyond. Get free strategy call.',
+  keywords: ['digital marketing agency India', 'SEO agency Mumbai', 'PPC agency India', 'web development company India'],
   metadataBase: new URL(siteConfig.url),
-  authors: [{ name: 'Harshit', url: siteConfig.url }],
-  creator: 'Harshit',
-  publisher: 'Orbyza',
+  authors: [{ name: 'Orbyza Leadership' }],
+  publisher: 'Orbyza Digital',
   formatDetection: {
     email: false,
     address: true,
@@ -42,16 +47,16 @@ export const metadata = {
     'application-name': 'Orbyza Digital Dominance',
   },
   openGraph: {
-    title: `Orbyza | #1 Digital Marketing Agency Jaipur`,
-    description: 'Expert SEO, SEM, and high-performance Web Design for brands demanding absolute dominance. Based in Jaipur, serving the global market with +420% ROI results.',
+    title: 'Digital Marketing Agency India | Orbyza',
+    description: 'Trusted by 100+ brands across Mumbai, Delhi, Bengaluru & 12 countries. SEO, SEM, and high-performance Web Design.',
     url: siteConfig.url,
-    siteName: siteConfig.name,
+    siteName: 'Orbyza',
     images: [
       {
         url: `${siteConfig.url}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Orbyza Digital Excellence Jaipur',
+        alt: 'Orbyza India - Digital Growth Master Plan',
       },
     ],
     locale: 'en_IN',
@@ -59,10 +64,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Orbyza | #1 Digital Marketing Agency Jaipur`,
-    description: 'Engineering digital growth engines in Jaipur. High-performance SEO and SEM for global brands.',
+    title: 'Digital Marketing Agency India | Orbyza',
+    description: 'High-performance digital growth engines for Indian and Global brands.',
     images: [`${siteConfig.url}/og-image.jpg`],
-    creator: '@orbyza',
   },
   robots: {
     index: true,
@@ -85,12 +89,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const isUnderConstruction = false;
 
   return (
-    <html lang="en" className={outfit.variable}>
+    <html lang="en" className={`${jakarta.variable} ${inter.variable}`}>
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
       </head>
-      <body className={`${outfit.className} bg-white text-slate-900 antialiased`}>
+      <body className="font-inter bg-white text-slate-900 antialiased">
         <OrganizationSchema />
         <LocalBusinessSchema />
         <Header />

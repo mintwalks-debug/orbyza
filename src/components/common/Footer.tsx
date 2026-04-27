@@ -5,11 +5,11 @@ import OrbyzaLogo from './OrbyzaLogo';
 const Footer = () => {
     const footerLinks = {
         capabilities: [
+            { label: 'Digital Marketing', href: '/services/digital-marketing' },
             { label: 'SEO Services', href: '/services/seo' },
-            { label: 'SEM / Google Ads', href: '/services/sem' },
-            { label: 'Social Media', href: '/services/social-media' },
-            { label: 'Web Design', href: '/services/web-design' },
-            { label: 'Content Marketing', href: '/services/content-marketing' }
+            { label: 'PPC / Google Ads', href: '/services/ppc-google-ads' },
+            { label: 'Web Development', href: '/services/web-development' },
+            { label: 'Social Media', href: '/services/social-media-marketing' }
         ],
         global: [
             { label: 'Delhi Division', href: '/delhi' },
@@ -33,7 +33,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-brand-secondary border-t border-brand-primary/10 py-24">
+        <footer className="bg-white border-t border-brand-border py-24">
             <div className="container-max">
                 <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 mb-16">
                     <div className="lg:col-span-4 space-y-6">

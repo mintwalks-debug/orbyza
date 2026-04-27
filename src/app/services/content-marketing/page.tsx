@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     description: 'Establish domain authority with high-impact content strategy and editorial excellence in Jaipur.',
     url: `${siteConfig.url}/services/content-marketing`,
     images: [`${siteConfig.url}/og-image.jpg`],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Content Marketing Agency Jaipur | Orbyza',
+    description: 'Establish domain authority with high-impact content strategy.',
+    images: [`${siteConfig.url}/og-image.jpg`],
   }
 };
 
