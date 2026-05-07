@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -35,13 +34,13 @@ const HeroSection = () => {
       </div>
 
       <div className="container-max relative z-10 w-full py-16">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="flex justify-center">
           
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col gap-8 text-center lg:text-left items-center lg:items-start"
+            className="flex flex-col gap-8 text-center items-center max-w-4xl"
           >
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-brand-primary/20 bg-brand-secondary/50 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-brand-success animate-ping" />
@@ -91,49 +90,6 @@ const HeroSection = () => {
                   <div className="text-[9px] font-bold uppercase tracking-widest text-brand-muted">Avg. ROI Uplift</div>
                </div>
             </div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative flex items-center justify-center"
-          >
-             <div className="relative w-full max-w-lg aspect-[5/6] rounded-[4rem] overflow-hidden border border-brand-border shadow-3xl bg-slate-50">
-                <Image
-                  src="/orbyza_female_elite_strategist_professional_1774771830941.png"
-                  alt="Orbyza India Strategic Lead"
-                  fill
-                  className="object-cover object-top hover:scale-105 transition-all duration-1000 grayscale hover:grayscale-0"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/20 to-transparent" />
-             </div>
-
-             {/* Dynamic Floaties (SEO Proof) */}
-             <motion.div 
-               animate={{ y: [0, -15, 0] }}
-               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute -left-12 top-20 bg-white p-6 rounded-[2rem] shadow-2xl border border-brand-border flex items-center gap-4"
-             >
-                <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary text-xl">📈</div>
-                <div>
-                   <div className="text-brand-dark font-black text-sm uppercase">Growth Engine</div>
-                   <div className="text-brand-muted text-[8px] uppercase tracking-widest font-bold">Mumbai // Delhi // Bangalore</div>
-                </div>
-             </motion.div>
-
-             <motion.div 
-               animate={{ y: [0, 15, 0] }}
-               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-               className="absolute -right-8 bottom-32 bg-white p-6 rounded-[2rem] shadow-2xl border border-brand-border flex items-center gap-4"
-             >
-                <div className="w-12 h-12 rounded-xl bg-brand-success/10 flex items-center justify-center text-brand-success text-xl">🏆</div>
-                <div>
-                   <div className="text-brand-dark font-black text-sm uppercase">#1 Agency</div>
-                   <div className="text-brand-muted text-[8px] uppercase tracking-widest font-bold">Tier 1 India Leader</div>
-                </div>
-             </motion.div>
           </motion.div>
 
         </div>
