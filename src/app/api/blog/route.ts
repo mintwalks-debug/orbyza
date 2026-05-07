@@ -5,6 +5,10 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
+    if (!supabase) {
+      return NextResponse.json([]);
+    }
+
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')

@@ -14,21 +14,22 @@ export async function POST(req: Request) {
        return NextResponse.json({ success: true, message: "Build mode standby" });
     }
 
-    // 1. Store in DB using Supabase
-    const { error: dbError } = await supabase
-      .from('contact_submissions')
-      .insert([
-        {
-          name,
-          email,
-          message: message || "No message provided.",
-          service_interested: service || "General Inquiry",
-        }
-      ]);
+    // 1. Store in DB using Supabase (skip if not configured)
+    if (supabase) {
+      const { error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert([
+          {
+            name,
+            email,
+            message: message || "No message provided.",
+            service_interested: service || "General Inquiry",
+          }
+        ]);
 
-    if (dbError) {
-      console.error("Supabase Error:", dbError);
-      // We continue to email even if DB fails, or handle as needed
+      if (dbError) {
+        console.error("Supabase Error:", dbError);
+      }
     }
 
     // 2. Configure Nodemailer
