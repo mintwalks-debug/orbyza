@@ -32,7 +32,87 @@ export default function Home() {
   return (
     <main className="bg-white text-slate-900">
       <HeroSection />
-      
+
+      {/* Pain-Point Questions Section */}
+      <section className="py-20 bg-[#0047FF] overflow-hidden relative">
+        {/* Subtle background texture */}
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: 'radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 50%, white 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
+        }} />
+        <div className="container-max relative z-10">
+          <div className="text-center mb-12">
+            <span className="inline-block text-[10px] font-bold uppercase tracking-[0.4em] text-white/60 mb-4">
+              Sounds Familiar?
+            </span>
+          </div>
+          <div className="flex flex-col items-center gap-6 mb-14">
+            {[
+              { q: "Is your website getting traffic but zero sales?", delay: "0s" },
+              { q: "Are your Google Ads draining budget with no results?", delay: "0.15s" },
+              { q: "Still invisible on Google while competitors win?", delay: "0.3s" },
+              { q: "Does your website look outdated and lose you customers?", delay: "0.45s" },
+              { q: "Tired of agencies that promise but never deliver?", delay: "0.6s" },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-4 group"
+                style={{ animationDelay: item.delay }}
+              >
+                <span className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center text-white text-sm font-black shrink-0 group-hover:bg-white group-hover:text-[#0047FF] transition-all duration-300">
+                  ?
+                </span>
+                <p
+                  className="text-2xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight italic leading-none group-hover:text-white/80 transition-colors duration-300"
+                  style={{ fontFamily: 'var(--font-jakarta, sans-serif)' }}
+                >
+                  {item.q}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Divider line */}
+          <div className="flex items-center gap-6 mb-12 max-w-4xl mx-auto">
+            <div className="flex-1 h-px bg-white/20" />
+            <span className="text-white/40 text-xs font-bold uppercase tracking-widest shrink-0">Then</span>
+            <div className="flex-1 h-px bg-white/20" />
+          </div>
+
+          {/* CTA Resolution */}
+          <div className="text-center">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-tight mb-8">
+              All-in-One Solution for{' '}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-[#FFD700]">SEM Activities</span>
+                <span className="absolute inset-x-0 bottom-0 h-3 bg-white/10 rounded-full -z-0" />
+              </span>
+              {' '}at{' '}
+              <span className="text-white underline decoration-[#FFD700] decoration-4 underline-offset-4">
+                Orbyza
+              </span>
+            </h2>
+            <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-medium">
+              SEO · Google Ads · Meta Ads · Website Designing · Analytics — engineered under one roof to drive real, measurable growth.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a
+                href="tel:9352047105"
+                className="bg-white text-[#0047FF] font-black px-10 py-5 rounded-full hover:bg-[#FFD700] hover:text-[#0F172A] transition-all shadow-2xl shadow-black/30 text-sm uppercase tracking-widest"
+              >
+                📞 Call Now — Free Audit
+              </a>
+              <a
+                href="/contact"
+                className="bg-transparent border-2 border-white/50 text-white font-bold px-10 py-5 rounded-full hover:border-white hover:bg-white/10 transition-all text-sm uppercase tracking-widest"
+              >
+                Book Strategy Session →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Industries Section */}
       <section className="py-24 bg-white border-b border-brand-border">
         <div className="container-max">

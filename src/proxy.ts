@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ipBlockingMiddleware, rateLimitingMiddleware } from "@/lib/security/firewall";
 
-export default function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
-  // 1. Security Headers & Firewall Checks
+export default function proxy(request: NextRequest) {
   const response = NextResponse.next();
 
   // Add Security Headers
@@ -13,7 +10,7 @@ export default function middleware(request: NextRequest) {
   response.headers.set("X-XSS-Protection", "1; mode=block");
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
-  // Run Firewall Checks (Mocks)
+  // Run Firewall Checks
   ipBlockingMiddleware(request);
   rateLimitingMiddleware(request);
 
@@ -21,6 +18,5 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Use the broader matcher from middleware.ts
   matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf)).*)'],
 };

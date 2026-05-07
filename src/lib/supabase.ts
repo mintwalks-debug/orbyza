@@ -1,15 +1,24 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Initialize the Supabase client for public/client-side use
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const isSupabaseConfigured =
+  supabaseUrl &&
+  supabaseAnonKey &&
+  !supabaseUrl.includes('your-project') &&
+  supabaseUrl.startsWith('https://');
+
+// Initialize the Supabase client for public/client-side use (null if not configured)
+export const supabase = isSupabaseConfigured
+  ? createClient(supabaseUrl!, supabaseAnonKey!)
+  : null;
 
 // Helper for server-side operations that require service-role permissions
 export const getSupabaseAdmin = () => {
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-  return createClient(supabaseUrl, serviceRoleKey);
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!isSupabaseConfigured || !serviceRoleKey || serviceRoleKey.includes('your-service')) return null;
+  return createClient(supabaseUrl!, serviceRoleKey);
 };
 
 export type Database = {
