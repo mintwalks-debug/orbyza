@@ -86,7 +86,8 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const isUnderConstruction = true;
+  // Show Under Construction in production, but disable it locally for development
+  const isUnderConstruction = process.env.NODE_ENV === 'production';
 
   if (isUnderConstruction) {
     return (
